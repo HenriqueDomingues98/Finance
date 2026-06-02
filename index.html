@@ -809,9 +809,38 @@ function renderTable() {
   }).join('');
 }
 
-function saveData() {
-  localStorage.setItem('hd_entries', JSON.stringify(entries));
-  localStorage.setItem('hd_nextId', nextId);
+// ═══════════════════════════════════════════════
+// FIREBASE REALTIME DATABASE
+// ═══════════════════════════════════════════════
+const FB_URL = 'https://financas-henriquedomingues-default-rtdb.firebaseio.com';
+
+async function saveData() {
+  try {
+    await fetch(`${FB_URL}/dados.json`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ entries, nextId })
+    });
+  } catch(e) {
+    console.error('Erro ao salvar:', e);
+  }
+}
+
+async function loadData() {
+  try {
+    const resp = await fetch(`${FB_URL}/dados.json`);
+    const data = await resp.json();
+    if (data && data.entries && data.entries.length > 0) {
+      entries = data.entries;
+      nextId = data.nextId || entries.length + 1;
+    } else {
+      initData();
+      await saveData();
+    }
+  } catch(e) {
+    console.error('Erro ao carregar:', e);
+    initData();
+  }
 }
 
 function deleteEntry(id) {
@@ -968,16 +997,10 @@ function exportarExcel() {
   XLSX.writeFile(wb,`financas_henrique${sufixo}_2026.xlsx`);
 }
 
-const _saved = localStorage.getItem('hd_entries');
-if (_saved) {
-  entries = JSON.parse(_saved);
-  nextId = parseInt(localStorage.getItem('hd_nextId')) || entries.length + 1;
-} else {
-  initData();
-  saveData();
-}
-renderTable();
-updateVisaoGeral();
+loadData().then(() => {
+  renderTable();
+  updateVisaoGeral();
+});
 </script>
 </body>
 </html>
