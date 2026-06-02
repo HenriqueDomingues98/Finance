@@ -809,8 +809,14 @@ function renderTable() {
   }).join('');
 }
 
+function saveData() {
+  localStorage.setItem('hd_entries', JSON.stringify(entries));
+  localStorage.setItem('hd_nextId', nextId);
+}
+
 function deleteEntry(id) {
   entries = entries.filter(e => e.id !== id);
+  saveData();
   renderTable(); updateVisaoGeral();
 }
 
@@ -930,6 +936,7 @@ async function addEntry() {
     statusEl.textContent = 'Classificado manualmente.';
   }
   entries.push({ id:nextId++, desc, categoria, tipo, fixo, payment, val, month, aiClassified:!userType||!userFix });
+  saveData();
   renderTable(); updateVisaoGeral();
   ['inp-desc','inp-val','inp-cat'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('inp-type').value='';
@@ -961,7 +968,14 @@ function exportarExcel() {
   XLSX.writeFile(wb,`financas_henrique${sufixo}_2026.xlsx`);
 }
 
-initData();
+const _saved = localStorage.getItem('hd_entries');
+if (_saved) {
+  entries = JSON.parse(_saved);
+  nextId = parseInt(localStorage.getItem('hd_nextId')) || entries.length + 1;
+} else {
+  initData();
+  saveData();
+}
 renderTable();
 updateVisaoGeral();
 </script>
