@@ -8,50 +8,51 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 :root {
-  --bg: #fff5f8;
-  --surface: #ffffff;
-  --card: #fff0f5;
-  --border: #f5c0d0;
-  --gold: #d4547a;
-  --gold-light: #e8829e;
-  --text: #2d1a22;
-  --muted: #b07090;
-  --success: #2d7a4f;
-  --success-bg: #edf7f1;
-  --danger: #b03060;
-  --danger-bg: #fdeef3;
-  --warning: #8a6000;
-  --warning-bg: #fdf6e3;
-  --info: #1a5fa8;
-  --info-bg: #eaf2fb;
-  --credit: #6b21a8;
-  --credit-bg: #f3e8ff;
-  --debit: #0369a1;
-  --debit-bg: #e0f2fe;
+  --bg: #0a0a0a;
+  --surface: #111111;
+  --card: #161616;
+  --border: #2a2a2a;
+  --gold: #ffffff;
+  --gold-light: #cccccc;
+  --text: #f0f0f0;
+  --muted: #777777;
+  --accent: #e0e0e0;
+  --success: #4ade80;
+  --success-bg: #0f2a1a;
+  --danger: #f87171;
+  --danger-bg: #2a0f0f;
+  --warning: #facc15;
+  --warning-bg: #2a220a;
+  --info: #60a5fa;
+  --info-bg: #0f1e2a;
+  --credit: #a78bfa;
+  --credit-bg: #1a1030;
+  --debit: #38bdf8;
+  --debit-bg: #0a1e2a;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.6; min-height: 100vh; }
 
 /* NAV */
-nav { position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.1rem 3rem; background: rgba(14,14,14,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+nav { position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.1rem 3rem; background: rgba(10,10,10,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
 .nav-logo { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--gold); letter-spacing: 0.05em; text-decoration: none; }
 .nav-right { display: flex; align-items: center; gap: 1.5rem; }
 .nav-back { color: var(--muted); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.3s; display: flex; align-items: center; gap: 0.4rem; }
 .nav-back:hover { color: var(--gold); }
-.ai-badge { display: inline-flex; align-items: center; gap: 5px; background: rgba(26,95,168,0.15); color: #6aaff5; font-size: 0.72rem; padding: 0.3rem 0.75rem; border-radius: 99px; border: 1px solid rgba(106,175,245,0.25); letter-spacing: 0.05em; }
+.ai-badge { display: inline-flex; align-items: center; gap: 5px; background: rgba(96,165,250,0.12); color: #60a5fa; font-size: 0.72rem; padding: 0.3rem 0.75rem; border-radius: 99px; border: 1px solid rgba(96,165,250,0.2); letter-spacing: 0.05em; }
 
 /* TABS */
-.tabs-nav { display: flex; gap: 0; background: rgba(14,14,14,0.92); border-bottom: 1px solid var(--border); padding: 0 3rem; overflow-x: auto; }
-.tab-btn { background: none; border: none; border-bottom: 2px solid transparent; padding: 0.75rem 1.25rem; font-family: 'DM Sans', sans-serif; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: #888; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+.tabs-nav { display: flex; gap: 0; background: rgba(10,10,10,0.95); border-bottom: 1px solid var(--border); padding: 0 3rem; overflow-x: auto; }
+.tab-btn { background: none; border: none; border-bottom: 2px solid transparent; padding: 0.75rem 1.25rem; font-family: 'DM Sans', sans-serif; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); cursor: pointer; transition: all 0.2s; white-space: nowrap; }
 .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
-.tab-btn:hover:not(.active) { color: #ccc; }
+.tab-btn:hover:not(.active) { color: var(--accent); }
 
 /* PAGE HEADER */
 .page-header { padding: 2.5rem 3rem 1.5rem; border-bottom: 1px solid var(--border); background: var(--surface); }
-.page-label { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+.page-label { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
 .page-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 4vw, 2.5rem); font-weight: 400; color: var(--text); line-height: 1.1; }
-.page-title em { font-style: italic; color: var(--gold); }
+.page-title em { font-style: italic; color: var(--muted); }
 .page-sub { font-size: 0.88rem; color: var(--muted); margin-top: 0.4rem; }
 
 /* MAIN */
@@ -60,14 +61,14 @@ nav { position: sticky; top: 0; z-index: 100; display: flex; justify-content: sp
 .tab-content.active { display: block; }
 
 /* ALERT BANNER */
-.alert-banner { background: var(--danger-bg); border: 1px solid #f5b8c8; border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; font-size: 0.88rem; color: var(--danger); }
-.alert-banner.warning { background: var(--warning-bg); border-color: #f0c060; color: var(--warning); }
+.alert-banner { background: var(--danger-bg); border: 1px solid #5a1a1a; border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; font-size: 0.88rem; color: var(--danger); }
+.alert-banner.warning { background: var(--warning-bg); border-color: #4a3a0a; color: var(--warning); }
 .alert-banner.hidden { display: none; }
 
 /* CARDS */
 .cards-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
-.metric-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; transition: transform 0.2s; }
-.metric-card:hover { transform: translateY(-2px); }
+.metric-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; transition: transform 0.2s, border-color 0.2s; }
+.metric-card:hover { transform: translateY(-2px); border-color: #444; }
 .metric-label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
 .metric-value { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 400; color: var(--text); }
 .metric-value.income { color: var(--success); }
@@ -81,12 +82,12 @@ nav { position: sticky; top: 0; z-index: 100; display: flex; justify-content: sp
 
 /* CHARTS GRID */
 .charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.5rem; }
-.chart-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; }
+.chart-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; }
 .chart-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 400; color: var(--text); margin-bottom: 1rem; }
 .chart-canvas-wrap { position: relative; height: 220px; }
 
 /* FORM */
-.add-form { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; }
+.add-form { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; }
 .form-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 400; color: var(--text); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.75rem; }
 .form-row { display: grid; gap: 0.75rem; margin-bottom: 0.75rem; }
 .form-row-3 { grid-template-columns: 2fr 1fr 1fr; }
@@ -94,7 +95,8 @@ nav { position: sticky; top: 0; z-index: 100; display: flex; justify-content: sp
 .field label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 0.35rem; }
 .field input, .field select { width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 4px; padding: 0.6rem 0.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; color: var(--text); outline: none; transition: border-color 0.2s; }
 .field input:focus, .field select:focus { border-color: var(--gold); }
-.btn-primary { background: var(--gold); color: #fff; border: none; border-radius: 4px; padding: 0.7rem 1.5rem; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; cursor: pointer; transition: background 0.2s, transform 0.15s; display: inline-flex; align-items: center; gap: 0.5rem; }
+.field select option { background: var(--bg); color: var(--text); }
+.btn-primary { background: var(--gold); color: #000; border: none; border-radius: 4px; padding: 0.7rem 1.5rem; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; cursor: pointer; transition: background 0.2s, transform 0.15s; display: inline-flex; align-items: center; gap: 0.5rem; }
 .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
 .ai-status { font-size: 0.82rem; color: var(--muted); font-style: italic; min-height: 1.2rem; margin-top: 0.75rem; }
 
@@ -102,20 +104,20 @@ nav { position: sticky; top: 0; z-index: 100; display: flex; justify-content: sp
 .toolbar { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1rem; flex-wrap: wrap; }
 .filter-group { display: flex; gap: 0.4rem; flex-wrap: wrap; }
 .filter-btn { background: none; border: 1px solid var(--border); border-radius: 99px; padding: 0.28rem 0.9rem; font-family: 'DM Sans', sans-serif; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); cursor: pointer; transition: all 0.2s; }
-.filter-btn.active { background: var(--gold); color: #fff; border-color: var(--gold); }
-.filter-btn.credit-btn.active { background: var(--credit); border-color: var(--credit); }
-.filter-btn.debit-btn.active { background: var(--debit); border-color: var(--debit); }
+.filter-btn.active { background: var(--gold); color: #000; border-color: var(--gold); }
+.filter-btn.credit-btn.active { background: var(--credit); color: #000; border-color: var(--credit); }
+.filter-btn.debit-btn.active { background: var(--debit); color: #000; border-color: var(--debit); }
 .filter-sep { width: 1px; background: var(--border); margin: 0 0.25rem; height: 24px; align-self: center; }
-.month-select, .cat-select { background: var(--surface); border: 1px solid var(--border); border-radius: 99px; padding: 0.28rem 1rem; font-family: 'DM Sans', sans-serif; font-size: 0.72rem; color: var(--text); cursor: pointer; outline: none; }
+.month-select, .cat-select { background: var(--card); border: 1px solid var(--border); border-radius: 99px; padding: 0.28rem 1rem; font-family: 'DM Sans', sans-serif; font-size: 0.72rem; color: var(--text); cursor: pointer; outline: none; }
 .ml-auto { margin-left: auto; display: flex; gap: 0.5rem; }
 
 /* TABLE */
-.table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 1.5rem; }
-.table-head { display: grid; grid-template-columns: 2.2fr 0.7fr 0.7fr 0.75fr 0.75fr 1fr 36px; gap: 8px; padding: 0.75rem 1.25rem; background: var(--card); border-bottom: 1px solid var(--border); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+.table-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 1.5rem; }
+.table-head { display: grid; grid-template-columns: 2.2fr 0.7fr 0.7fr 0.75fr 0.75fr 1fr 36px; gap: 8px; padding: 0.75rem 1.25rem; background: var(--surface); border-bottom: 1px solid var(--border); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
 .table-row { display: grid; grid-template-columns: 2.2fr 0.7fr 0.7fr 0.75fr 0.75fr 1fr 36px; gap: 8px; padding: 0.8rem 1.25rem; border-bottom: 1px solid var(--border); align-items: center; font-size: 0.84rem; transition: background 0.15s; }
 .table-row:last-child { border-bottom: none; }
-.table-row:hover { background: var(--bg); }
-.month-divider { padding: 0.45rem 1.25rem; background: var(--bg); border-bottom: 1px solid var(--border); font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+.table-row:hover { background: var(--surface); }
+.month-divider { padding: 0.45rem 1.25rem; background: var(--bg); border-bottom: 1px solid var(--border); font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
 .empty-state { padding: 3rem; text-align: center; color: var(--muted); font-size: 0.9rem; }
 .row-desc { display: flex; align-items: center; gap: 6px; overflow: hidden; }
 .row-desc-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -136,16 +138,16 @@ nav { position: sticky; top: 0; z-index: 100; display: flex; justify-content: sp
 .btn-del:hover { color: var(--danger); }
 
 /* INSIGHTS */
-.insights { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; }
+.insights { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; }
 .insights-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 400; color: var(--text); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
 .insight-text { font-size: 0.88rem; color: var(--muted); line-height: 1.8; }
 
 /* CREDIT VIEW */
 .credit-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.5rem; }
-.credit-card-block { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; }
-.credit-card-block.credit-theme { border-color: #d8b4fe; background: linear-gradient(135deg, #faf5ff 0%, #fff 100%); }
-.credit-card-block.debit-theme { border-color: #bae6fd; background: linear-gradient(135deg, #f0f9ff 0%, #fff 100%); }
-.credit-block-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+.credit-card-block { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; }
+.credit-card-block.credit-theme { border-color: #3b2a5a; }
+.credit-card-block.debit-theme { border-color: #0a2a3a; }
+.credit-block-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; color: var(--text); }
 .credit-block-title .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
 .dot-credit { background: var(--credit); }
 .dot-debit { background: var(--debit); }
@@ -161,15 +163,15 @@ nav { position: sticky; top: 0; z-index: 100; display: flex; justify-content: sp
 
 /* BUDGET TAB */
 .budget-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.5rem; }
-.budget-item { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; }
+.budget-item { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; }
 .budget-item-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }
-.budget-item-name { font-weight: 500; font-size: 0.9rem; }
+.budget-item-name { font-weight: 500; font-size: 0.9rem; color: var(--text); }
 .budget-item-cat { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
-.budget-pct { font-size: 0.85rem; font-weight: 500; }
+.budget-pct { font-size: 0.85rem; font-weight: 500; color: var(--muted); }
 .budget-amounts { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--muted); margin-top: 0.5rem; }
-.over-budget { border-color: #f5b8c8; background: var(--danger-bg); }
+.over-budget { border-color: #5a1a1a; }
 .over-budget .budget-pct { color: var(--danger); }
-.near-budget { border-color: #f0c060; background: var(--warning-bg); }
+.near-budget { border-color: #4a3a0a; }
 .near-budget .budget-pct { color: var(--warning); }
 
 /* SECTION HEADER */
@@ -205,63 +207,40 @@ footer a:hover { text-decoration: underline; }
 
 /* LOGIN SCREEN */
 #login-screen {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: #0e0a0c;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  position: fixed; inset: 0; z-index: 9999;
+  background: #0a0a0a;
+  display: flex; align-items: center; justify-content: center; flex-direction: column;
 }
 #login-screen.hidden { display: none; }
 .login-box {
-  background: rgba(255,255,255,0.03);
+  background: var(--card);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 3rem 2.5rem;
-  width: 100%;
-  max-width: 360px;
+  width: 100%; max-width: 360px;
   text-align: center;
   animation: fadeUp 0.5s ease both;
 }
+.login-shield { margin: 0 auto 1.5rem; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; }
+.login-shield img { width: 64px; height: auto; filter: grayscale(100%) brightness(1.5); opacity: 0.9; }
 .login-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--gold); margin-bottom: 0.4rem; letter-spacing: 0.05em; }
 .login-sub { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 2rem; }
 .login-field { margin-bottom: 1rem; }
 .login-field input {
-  width: 100%;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 0.85rem 1rem;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.95rem;
-  color: #fff;
-  outline: none;
-  transition: border-color 0.2s;
-  text-align: center;
-  letter-spacing: 0.1em;
+  width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
+  padding: 0.85rem 1rem; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; color: var(--text);
+  outline: none; transition: border-color 0.2s; text-align: center; letter-spacing: 0.1em;
 }
 .login-field input:focus { border-color: var(--gold); }
 .login-btn {
-  width: 100%;
-  background: var(--gold);
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 0.85rem;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.82rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.15s;
-  margin-top: 0.25rem;
+  width: 100%; background: var(--gold); color: #000; border: none; border-radius: 6px;
+  padding: 0.85rem; font-family: 'DM Sans', sans-serif; font-size: 0.82rem;
+  letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; cursor: pointer;
+  transition: background 0.2s, transform 0.15s; margin-top: 0.25rem;
 }
 .login-btn:hover { background: var(--gold-light); transform: translateY(-1px); }
-.login-error { font-size: 0.78rem; color: #f87171; margin-top: 0.75rem; min-height: 1rem; }
-.login-footer { font-size: 0.65rem; color: rgba(176,112,144,0.3); margin-top: 2rem; letter-spacing: 0.1em; }
+.login-error { font-size: 0.78rem; color: var(--danger); margin-top: 0.75rem; min-height: 1rem; }
+.login-footer { font-size: 0.65rem; color: #333; margin-top: 2rem; letter-spacing: 0.1em; }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
@@ -270,6 +249,11 @@ footer a:hover { text-decoration: underline; }
 <!-- LOGIN -->
 <div id="login-screen">
   <div class="login-box">
+    <!-- Escudo do Santos: suba o arquivo santos.png no seu repositório GitHub -->
+    <!-- e ele aparecerá aqui automaticamente -->
+    <div class="login-shield">
+      <img src="santos.png" alt="Santos FC" onerror="this.style.display='none'" />
+    </div>
     <div class="login-logo">H. Domingues</div>
     <div class="login-sub">Controle Financeiro · Acesso restrito</div>
     <div class="login-field">
@@ -282,7 +266,7 @@ footer a:hover { text-decoration: underline; }
 </div>
 
 <nav>
-  <a href="https://juliamota-00.github.io/" class="nav-logo">J. Mota</a>
+  <a href="https://henriquedomingues98.github.io/" class="nav-logo">H. Domingues</a>
   <div class="nav-right">
     <a href="https://henriquedomingues98.github.io/" class="nav-back">← Portfólio</a>
     <div class="ai-badge">✦ IA ativa</div>
@@ -306,10 +290,7 @@ footer a:hover { text-decoration: underline; }
 
   <!-- ===== ABA: VISÃO GERAL ===== -->
   <div class="tab-content active" id="tab-visao-geral">
-
     <div id="alert-container"></div>
-
-    <!-- CARDS -->
     <div class="cards-row fade-in">
       <div class="metric-card">
         <div class="metric-label">Renda</div>
@@ -335,7 +316,6 @@ footer a:hover { text-decoration: underline; }
       </div>
     </div>
 
-    <!-- FILTRO DE MÊS na visão geral -->
     <div style="margin-bottom:1rem;">
       <select class="month-select" id="vg-month-filter" onchange="updateVisaoGeral()">
         <option value="all">Todo o ano</option>
@@ -348,7 +328,6 @@ footer a:hover { text-decoration: underline; }
       </select>
     </div>
 
-    <!-- CHARTS -->
     <div class="charts-grid fade-in">
       <div class="chart-card">
         <div class="chart-title">Renda vs Despesas por mês</div>
@@ -368,18 +347,14 @@ footer a:hover { text-decoration: underline; }
       </div>
     </div>
 
-    <!-- INSIGHTS -->
     <div class="insights fade-in">
       <div class="insights-title">✦ Resumo do período</div>
       <div class="insight-text" id="vg-insight">Calculando...</div>
     </div>
-
   </div>
 
   <!-- ===== ABA: LANÇAMENTOS ===== -->
   <div class="tab-content" id="tab-lancamentos">
-
-    <!-- ADD FORM -->
     <div class="add-form fade-in">
       <div class="form-title">✦ Adicionar lançamento</div>
       <div class="form-row form-row-3">
@@ -438,7 +413,6 @@ footer a:hover { text-decoration: underline; }
       <div class="ai-status" id="ai-status"></div>
     </div>
 
-    <!-- TOOLBAR -->
     <div class="toolbar fade-in">
       <div class="filter-group">
         <button class="filter-btn active" onclick="setTypeFilter('all',this)">Todos</button>
@@ -447,7 +421,7 @@ footer a:hover { text-decoration: underline; }
       </div>
       <div class="filter-sep"></div>
       <div class="filter-group">
-        <button class="filter-btn" onclick="setFixFilter('all',this)" id="fix-all" style="background:var(--gold);color:#fff;border-color:var(--gold);">Fixo+Var</button>
+        <button class="filter-btn" onclick="setFixFilter('all',this)" id="fix-all" style="background:var(--gold);color:#000;border-color:var(--gold);">Fixo+Var</button>
         <button class="filter-btn" onclick="setFixFilter('fixo',this)" id="fix-fixo">Fixos</button>
         <button class="filter-btn" onclick="setFixFilter('variavel',this)" id="fix-var">Variáveis</button>
       </div>
@@ -473,25 +447,16 @@ footer a:hover { text-decoration: underline; }
       </div>
     </div>
 
-    <!-- TABELA -->
     <div class="table-wrap fade-in">
       <div class="table-head">
-        <span>Descrição</span>
-        <span>Mês</span>
-        <span>Tipo</span>
-        <span>Fixo/Var.</span>
-        <span>Pagamento</span>
-        <span>Valor</span>
-        <span></span>
+        <span>Descrição</span><span>Mês</span><span>Tipo</span><span>Fixo/Var.</span><span>Pagamento</span><span>Valor</span><span></span>
       </div>
       <div id="table-body"><div class="empty-state">Carregando...</div></div>
     </div>
-
   </div>
 
   <!-- ===== ABA: CRÉDITO/DÉBITO ===== -->
   <div class="tab-content" id="tab-credito-debito">
-
     <div style="margin-bottom:1rem;">
       <select class="month-select" id="cd-month-filter" onchange="updateCreditTab()">
         <option value="all">Todo o ano</option>
@@ -503,26 +468,20 @@ footer a:hover { text-decoration: underline; }
         <option value="Nov">Novembro</option><option value="Dez">Dezembro</option>
       </select>
     </div>
-
     <div class="credit-summary fade-in">
       <div class="credit-card-block credit-theme">
-        <div class="credit-block-title">
-          <span class="dot dot-credit"></span> Cartão de Crédito
-        </div>
+        <div class="credit-block-title"><span class="dot dot-credit"></span> Cartão de Crédito</div>
         <div class="credit-amount credit-color" id="cd-credit-total">—</div>
         <div class="credit-sub" id="cd-credit-count">— lançamentos</div>
         <div class="month-breakdown" id="cd-credit-months"></div>
       </div>
       <div class="credit-card-block debit-theme">
-        <div class="credit-block-title">
-          <span class="dot dot-debit"></span> Débito / Pix
-        </div>
+        <div class="credit-block-title"><span class="dot dot-debit"></span> Débito / Pix</div>
         <div class="credit-amount debit-color" id="cd-debit-total">—</div>
         <div class="credit-sub" id="cd-debit-count">— lançamentos</div>
         <div class="month-breakdown" id="cd-debit-months"></div>
       </div>
     </div>
-
     <div class="charts-grid fade-in">
       <div class="chart-card">
         <div class="chart-title">Crédito vs Débito por mês</div>
@@ -533,7 +492,6 @@ footer a:hover { text-decoration: underline; }
         <div class="chart-canvas-wrap"><canvas id="chart-cd-pie"></canvas></div>
       </div>
     </div>
-
     <div class="section-header">Detalhamento de crédito por categoria</div>
     <div class="table-wrap fade-in">
       <div class="table-head" style="grid-template-columns:2fr 0.8fr 0.8fr 1fr 36px;">
@@ -541,12 +499,10 @@ footer a:hover { text-decoration: underline; }
       </div>
       <div id="cd-table-body"></div>
     </div>
-
   </div>
 
   <!-- ===== ABA: ORÇAMENTO ===== -->
   <div class="tab-content" id="tab-orcamento">
-
     <div class="cards-row fade-in" style="grid-template-columns:repeat(3,1fr);">
       <div class="metric-card">
         <div class="metric-label">Orçamento mensal médio</div>
@@ -564,18 +520,15 @@ footer a:hover { text-decoration: underline; }
         <div class="metric-sub" id="orc-top-cat-val"></div>
       </div>
     </div>
-
     <div class="section-header">Gastos por categoria vs média mensal</div>
     <div class="budget-grid fade-in" id="orc-grid"></div>
-
     <div class="section-header">Gastos mensais — comparativo</div>
     <div class="chart-card fade-in" style="margin-bottom:1.5rem;">
       <div class="chart-canvas-wrap" style="height:260px;"><canvas id="chart-orc-monthly"></canvas></div>
     </div>
-
   </div>
 
-</div><!-- /main -->
+</div>
 
 <footer>
   © 2026 Henrique Domingues · <a href="https://henriquedomingues98.github.io/">Voltar ao portfólio</a>
@@ -585,7 +538,7 @@ footer a:hover { text-decoration: underline; }
 // ═══════════════════════════════════════════════
 // LOGIN COM HASH
 // ═══════════════════════════════════════════════
-const HASH_CORRETO = '83ebbaad1080c30f9fef541b4d61d7eadbe3f3dcdd2e1b7420ab35685c8d7187';
+const HASH_CORRETO = 'd2077930d1324890b80b74953e189df7d1f281ba950ed96d4ff5727969fbe563';
 
 async function hashSenha(senha) {
   const encoder = new TextEncoder();
@@ -602,7 +555,7 @@ async function doLogin() {
   const hash = await hashSenha(input);
   if (hash === HASH_CORRETO) {
     document.getElementById('login-screen').classList.add('hidden');
-    sessionStorage.setItem('jm_auth', '1');
+    sessionStorage.setItem('hd_auth', '1');
   } else {
     errorEl.textContent = 'Senha incorreta. Tente novamente.';
     document.getElementById('login-input').value = '';
@@ -610,13 +563,12 @@ async function doLogin() {
   }
 }
 
-// Se já autenticou nesta sessão, pula o login
-if (sessionStorage.getItem('jm_auth') === '1') {
+if (sessionStorage.getItem('hd_auth') === '1') {
   document.getElementById('login-screen').classList.add('hidden');
 }
 
 // ═══════════════════════════════════════════════
-// DADOS INICIAIS
+// DADOS
 // ═══════════════════════════════════════════════
 let entries = [];
 let nextId = 1;
@@ -633,11 +585,9 @@ function makeEntries(desc, categoria, tipo, fixo, vals, payment) {
 }
 
 function initData() {
-  // RENDA
   makeEntries('Salário', 'Renda', 'entrada', 'fixo', [3829.55,7287.32,4009,4009,4009,4009,4009,4009,4009,4009,4009,4009], 'debito');
   makeEntries('Vale transporte + HO', 'Renda', 'entrada', 'fixo', [100,100,0,0,0,0,0,0,0,0,0,0], 'debito');
   makeEntries('Outros (Pão)', 'Renda', 'entrada', 'variavel', [0,226,0,0,0,0,0,0,0,0,0,0], 'debito');
-  // DESPESAS FIXAS (débito/domiciliação)
   makeEntries('Financiamento apartamento', 'Moradia', 'saida', 'fixo', [1233.72,1234.54,1250,1250,1250,1250,1250,1250,1250,1250,1250,1250], 'debito');
   makeEntries('Dívidas', 'Financeiro', 'saida', 'variavel', [848.98,526.98,500,500,500,500,0,0,0,0,0,0], 'debito');
   makeEntries('Condomínio', 'Moradia', 'saida', 'fixo', [439.55,446.98,420,420,420,420,420,420,420,420,420,420], 'debito');
@@ -660,51 +610,31 @@ function initData() {
   makeEntries('Lazer geral', 'Lazer', 'saida', 'variavel', [180,127.9,0,0,0,0,0,0,0,0,0,0], 'credito');
 }
 
-// ═══════════════════════════════════════════════
-// HELPERS
-// ═══════════════════════════════════════════════
 const fmtBRL = n => n.toLocaleString('pt-BR', { style:'currency', currency:'BRL' });
+function scopedEntries(monthVal) { return monthVal === 'all' ? entries : entries.filter(e => e.month === monthVal); }
+function getCategories() { return [...new Set(entries.map(e => e.categoria))].sort(); }
 
-function scopedEntries(monthVal) {
-  if (monthVal === 'all') return entries;
-  return entries.filter(e => e.month === monthVal);
-}
-
-function getCategories() {
-  return [...new Set(entries.map(e => e.categoria))].sort();
-}
-
-// ═══════════════════════════════════════════════
-// TABS
-// ═══════════════════════════════════════════════
 function switchTab(tabId, btn) {
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-' + tabId).classList.add('active');
   btn.classList.add('active');
-  if (tabId === 'visao-geral') { updateVisaoGeral(); }
-  if (tabId === 'credito-debito') { updateCreditTab(); }
-  if (tabId === 'orcamento') { updateOrcamentoTab(); }
+  if (tabId === 'visao-geral') updateVisaoGeral();
+  if (tabId === 'credito-debito') updateCreditTab();
+  if (tabId === 'orcamento') updateOrcamentoTab();
 }
 
-// ═══════════════════════════════════════════════
-// CHARTS (instances)
-// ═══════════════════════════════════════════════
 let chartMonthly, chartCat, chartBalance, chartFixvar, chartCdMonthly, chartCdPie, chartOrcMonthly;
-
-function destroyChart(ref) { if (ref) { ref.destroy(); } return null; }
+function destroyChart(ref) { if (ref) ref.destroy(); return null; }
 
 const catColors = {
-  'Moradia': '#d4547a', 'Financeiro': '#6b21a8', 'Fixos Digitais': '#0369a1',
-  'Lazer': '#16a34a', 'Projetos': '#ca8a04', 'Saúde': '#dc2626',
-  'Casa': '#7c3aed', 'Transporte': '#0891b2', 'Alimentação': '#65a30d',
-  'Renda': '#2d7a4f', 'Investimentos': '#1d4ed8', 'Geral': '#9ca3af'
+  'Moradia':'#aaaaaa','Financeiro':'#a78bfa','Fixos Digitais':'#38bdf8',
+  'Lazer':'#4ade80','Projetos':'#facc15','Saúde':'#f87171',
+  'Casa':'#c084fc','Transporte':'#22d3ee','Alimentação':'#86efac',
+  'Renda':'#4ade80','Investimentos':'#60a5fa','Geral':'#666666'
 };
-function catColor(cat) { return catColors[cat] || '#b07090'; }
+function catColor(cat) { return catColors[cat] || '#888888'; }
 
-// ═══════════════════════════════════════════════
-// VISÃO GERAL
-// ═══════════════════════════════════════════════
 function updateVisaoGeral() {
   const mf = document.getElementById('vg-month-filter').value;
   const scope = scopedEntries(mf);
@@ -723,7 +653,7 @@ function updateVisaoGeral() {
   pctEl.style.color = pct > 85 ? 'var(--danger)' : pct > 65 ? 'var(--warning)' : 'var(--success)';
   const bar = document.getElementById('vg-bar');
   bar.style.width = Math.min(pct,100) + '%';
-  bar.style.background = pct > 85 ? 'var(--danger)' : pct > 65 ? '#ca8a04' : 'var(--success)';
+  bar.style.background = pct > 85 ? 'var(--danger)' : pct > 65 ? 'var(--warning)' : 'var(--success)';
 
   const label = mf === 'all' ? 'acumulado anual' : mf;
   document.getElementById('vg-income-sub').textContent = label;
@@ -731,21 +661,16 @@ function updateVisaoGeral() {
   document.getElementById('vg-balance-sub').textContent = label;
   document.getElementById('header-sub').textContent = `${fmtBRL(income)} de renda · ${fmtBRL(expense)} de despesas · Saldo ${fmtBRL(balance)}`;
 
-  // Alertas
   const alertEl = document.getElementById('alert-container');
   alertEl.innerHTML = '';
-  if (pct > 85) {
-    alertEl.innerHTML = `<div class="alert-banner">⚠️ Atenção: você está gastando ${pct}% da sua renda. Saldo em risco!</div>`;
-  } else if (pct > 70) {
-    alertEl.innerHTML = `<div class="alert-banner warning">💡 Você está usando ${pct}% da renda em despesas. Fique de olho.</div>`;
-  }
+  if (pct > 85) alertEl.innerHTML = `<div class="alert-banner">⚠️ Atenção: você está gastando ${pct}% da sua renda. Saldo em risco!</div>`;
+  else if (pct > 70) alertEl.innerHTML = `<div class="alert-banner warning">💡 Você está usando ${pct}% da renda em despesas. Fique de olho.</div>`;
 
   updateChartMonthly();
   updateChartCat(mf);
   updateChartBalance();
   updateChartFixVar(mf);
 
-  // Insight text
   const fixas = scope.filter(e=>e.fixo==='fixo'&&e.tipo==='saida').reduce((s,e)=>s+e.val,0);
   const variaveis = scope.filter(e=>e.fixo==='variavel'&&e.tipo==='saida').reduce((s,e)=>s+e.val,0);
   const pctFixo = income>0?Math.round((fixas/income)*100):0;
@@ -757,20 +682,20 @@ function updateVisaoGeral() {
   document.getElementById('vg-insight').textContent = txt;
 }
 
+const chartDefaults = { color: '#777777', borderColor: '#2a2a2a' };
+Chart.defaults.color = '#777777';
+
 function updateChartMonthly() {
   const incomes = months.map(m => entries.filter(e=>e.tipo==='entrada'&&e.month===m).reduce((s,e)=>s+e.val,0));
   const expenses = months.map(m => entries.filter(e=>e.tipo==='saida'&&e.month===m).reduce((s,e)=>s+e.val,0));
   chartMonthly = destroyChart(chartMonthly);
   chartMonthly = new Chart(document.getElementById('chart-monthly'), {
     type: 'bar',
-    data: {
-      labels: months,
-      datasets: [
-        { label: 'Renda', data: incomes, backgroundColor: 'rgba(45,122,79,0.7)', borderRadius: 4 },
-        { label: 'Despesas', data: expenses, backgroundColor: 'rgba(176,48,96,0.7)', borderRadius: 4 }
-      ]
-    },
-    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { font: { family: 'DM Sans', size: 11 } } } }, scales: { x: { grid: { display: false } }, y: { grid: { color: '#f5c0d022' }, ticks: { callback: v => 'R$' + (v/1000).toFixed(0) + 'k' } } } }
+    data: { labels: months, datasets: [
+      { label: 'Renda', data: incomes, backgroundColor: 'rgba(74,222,128,0.6)', borderRadius: 4 },
+      { label: 'Despesas', data: expenses, backgroundColor: 'rgba(248,113,113,0.6)', borderRadius: 4 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { font: { family:'DM Sans', size:11 }, color:'#777' } } }, scales: { x: { grid: { display:false }, ticks: { color:'#666' } }, y: { grid: { color:'#2a2a2a' }, ticks: { color:'#666', callback: v => 'R$'+(v/1000).toFixed(0)+'k' } } } }
   });
 }
 
@@ -781,8 +706,8 @@ function updateChartCat(mf) {
   chartCat = destroyChart(chartCat);
   chartCat = new Chart(document.getElementById('chart-cat'), {
     type: 'doughnut',
-    data: { labels: cats, datasets: [{ data: vals, backgroundColor: cats.map(c=>catColor(c)), borderWidth: 2, borderColor: '#fff' }] },
-    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { font: { family: 'DM Sans', size: 11 }, boxWidth: 12 } } } }
+    data: { labels: cats, datasets: [{ data: vals, backgroundColor: cats.map(c=>catColor(c)), borderWidth: 2, borderColor: '#161616' }] },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position:'right', labels: { font:{ family:'DM Sans', size:11 }, color:'#777', boxWidth:12 } } } }
   });
 }
 
@@ -791,17 +716,13 @@ function updateChartBalance() {
   const bals = months.map(m => {
     const inc = entries.filter(e=>e.tipo==='entrada'&&e.month===m).reduce((s,e)=>s+e.val,0);
     const exp = entries.filter(e=>e.tipo==='saida'&&e.month===m).reduce((s,e)=>s+e.val,0);
-    acc += inc - exp;
-    return acc;
+    acc += inc - exp; return acc;
   });
   chartBalance = destroyChart(chartBalance);
   chartBalance = new Chart(document.getElementById('chart-balance'), {
     type: 'line',
-    data: {
-      labels: months,
-      datasets: [{ label: 'Saldo acumulado', data: bals, borderColor: '#d4547a', backgroundColor: 'rgba(212,84,122,0.1)', fill: true, tension: 0.4, pointRadius: 4, pointBackgroundColor: '#d4547a' }]
-    },
-    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } }, y: { grid: { color: '#f5c0d022' }, ticks: { callback: v => 'R$' + (v/1000).toFixed(0) + 'k' } } } }
+    data: { labels: months, datasets: [{ label: 'Saldo acumulado', data: bals, borderColor: '#ffffff', backgroundColor: 'rgba(255,255,255,0.05)', fill: true, tension: 0.4, pointRadius: 4, pointBackgroundColor: '#ffffff' }] },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display:false } }, scales: { x: { grid:{ display:false }, ticks:{ color:'#666' } }, y: { grid:{ color:'#2a2a2a' }, ticks:{ color:'#666', callback: v => 'R$'+(v/1000).toFixed(0)+'k' } } } }
   });
 }
 
@@ -812,14 +733,11 @@ function updateChartFixVar(mf) {
   chartFixvar = destroyChart(chartFixvar);
   chartFixvar = new Chart(document.getElementById('chart-fixvar'), {
     type: 'pie',
-    data: { labels: ['Fixos', 'Variáveis'], datasets: [{ data: [fixo, variavel], backgroundColor: ['#ca8a04','#d4547a'], borderWidth: 2, borderColor: '#fff' }] },
-    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { font: { family: 'DM Sans', size: 12 } } } } }
+    data: { labels: ['Fixos','Variáveis'], datasets: [{ data:[fixo,variavel], backgroundColor:['#aaaaaa','#555555'], borderWidth:2, borderColor:'#161616' }] },
+    options: { responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ font:{ family:'DM Sans', size:12 }, color:'#777' } } } }
   });
 }
 
-// ═══════════════════════════════════════════════
-// LANÇAMENTOS — FILTERS & TABLE
-// ═══════════════════════════════════════════════
 function setTypeFilter(f, btn) {
   typeFilter = f;
   document.querySelectorAll('.filter-group:nth-child(1) .filter-btn').forEach(b => { b.classList.remove('active'); b.style.background=''; b.style.color=''; b.style.borderColor=''; });
@@ -830,14 +748,14 @@ function setTypeFilter(f, btn) {
 function setFixFilter(f, btn) {
   fixFilter = f;
   ['fix-all','fix-fixo','fix-var'].forEach(id => { const el=document.getElementById(id); el.style.background=''; el.style.color=''; el.style.borderColor=''; });
-  btn.style.background='var(--gold)'; btn.style.color='#fff'; btn.style.borderColor='var(--gold)';
+  btn.style.background='var(--gold)'; btn.style.color='#000'; btn.style.borderColor='var(--gold)';
   renderTable();
 }
 
 function setPayFilter(f, btn) {
   if (payFilter === f) {
     payFilter = 'all';
-    document.querySelectorAll('.filter-group:nth-child(5) .filter-btn, #pay-credit, #pay-debit').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('#pay-credit, #pay-debit').forEach(b => b.classList.remove('active'));
   } else {
     payFilter = f;
     document.querySelectorAll('#pay-credit, #pay-debit').forEach(b => b.classList.remove('active'));
@@ -851,21 +769,18 @@ function filteredEntries() {
   const cf = document.getElementById('filter-cat').value;
   return entries.filter(e => {
     const typeOk = typeFilter==='all' || e.tipo===typeFilter;
-    const fixOk = fixFilter==='all' || e.fixo===fixFilter;
-    const payOk = payFilter==='all' || e.payment===payFilter || (payFilter==='debito' && (e.payment==='debito'||e.payment==='pix'));
+    const fixOk  = fixFilter==='all'  || e.fixo===fixFilter;
+    const payOk  = payFilter==='all'  || e.payment===payFilter || (payFilter==='debito' && (e.payment==='debito'||e.payment==='pix'));
     const monthOk = mf==='all' || e.month===mf;
-    const catOk = cf==='all' || e.categoria===cf;
+    const catOk   = cf==='all' || e.categoria===cf;
     return typeOk && fixOk && payOk && monthOk && catOk;
   });
 }
 
 function renderTable() {
-  // populate cat filter
   const catSel = document.getElementById('filter-cat');
   const currentCat = catSel.value;
-  const cats = getCategories();
-  catSel.innerHTML = '<option value="all">Todas categorias</option>' + cats.map(c=>`<option value="${c}" ${c===currentCat?'selected':''}>${c}</option>`).join('');
-
+  catSel.innerHTML = '<option value="all">Todas categorias</option>' + getCategories().map(c=>`<option value="${c}" ${c===currentCat?'selected':''}>${c}</option>`).join('');
   const body = document.getElementById('table-body');
   const list = filteredEntries();
   if (!list.length) { body.innerHTML = '<div class="empty-state">Nenhum lançamento encontrado.</div>'; return; }
@@ -881,7 +796,7 @@ function renderTable() {
     return div + `<div class="table-row">
       <div class="row-desc">
         <span class="row-desc-text">${e.desc}</span>
-        ${e.aiClassified ? '<span class="badge badge-ai">IA</span>' : ''}
+        ${e.aiClassified?'<span class="badge badge-ai">IA</span>':''}
         <span class="cat-label">${e.categoria}</span>
       </div>
       <span style="color:var(--muted);font-size:0.78rem;">${e.month}</span>
@@ -896,54 +811,40 @@ function renderTable() {
 
 function deleteEntry(id) {
   entries = entries.filter(e => e.id !== id);
-  renderTable();
-  updateVisaoGeral();
+  renderTable(); updateVisaoGeral();
 }
 
-// ═══════════════════════════════════════════════
-// CRÉDITO / DÉBITO TAB
-// ═══════════════════════════════════════════════
 function updateCreditTab() {
   const mf = document.getElementById('cd-month-filter').value;
   const scope = scopedEntries(mf).filter(e=>e.tipo==='saida');
   const credits = scope.filter(e=>e.payment==='credito');
-  const debits = scope.filter(e=>e.payment==='debito'||e.payment==='pix');
+  const debits  = scope.filter(e=>e.payment==='debito'||e.payment==='pix');
   const creditTotal = credits.reduce((s,e)=>s+e.val,0);
-  const debitTotal = debits.reduce((s,e)=>s+e.val,0);
-
+  const debitTotal  = debits.reduce((s,e)=>s+e.val,0);
   document.getElementById('cd-credit-total').textContent = fmtBRL(creditTotal);
   document.getElementById('cd-credit-count').textContent = credits.length + ' lançamentos';
-  document.getElementById('cd-debit-total').textContent = fmtBRL(debitTotal);
-  document.getElementById('cd-debit-count').textContent = debits.length + ' lançamentos';
-
-  // month breakdown for credit
-  const creditMonths = months.map(m => ({ m, val: credits.filter(e=>e.month===m).reduce((s,e)=>s+e.val,0) })).filter(x=>x.val>0);
+  document.getElementById('cd-debit-total').textContent  = fmtBRL(debitTotal);
+  document.getElementById('cd-debit-count').textContent  = debits.length + ' lançamentos';
+  const creditMonths = months.map(m=>({m,val:credits.filter(e=>e.month===m).reduce((s,e)=>s+e.val,0)})).filter(x=>x.val>0);
   document.getElementById('cd-credit-months').innerHTML = creditMonths.map(x=>`<div class="month-row"><span class="month-row-name">${x.m}</span><span class="month-row-val" style="color:var(--credit)">${fmtBRL(x.val)}</span></div>`).join('');
-
-  const debitMonths = months.map(m => ({ m, val: debits.filter(e=>e.month===m).reduce((s,e)=>s+e.val,0) })).filter(x=>x.val>0);
+  const debitMonths = months.map(m=>({m,val:debits.filter(e=>e.month===m).reduce((s,e)=>s+e.val,0)})).filter(x=>x.val>0);
   document.getElementById('cd-debit-months').innerHTML = debitMonths.map(x=>`<div class="month-row"><span class="month-row-name">${x.m}</span><span class="month-row-val" style="color:var(--debit)">${fmtBRL(x.val)}</span></div>`).join('');
-
-  // Charts
   const cdCreditM = months.map(m=>credits.filter(e=>e.month===m).reduce((s,e)=>s+e.val,0));
-  const cdDebitM = months.map(m=>debits.filter(e=>e.month===m).reduce((s,e)=>s+e.val,0));
+  const cdDebitM  = months.map(m=>debits.filter(e=>e.month===m).reduce((s,e)=>s+e.val,0));
   chartCdMonthly = destroyChart(chartCdMonthly);
   chartCdMonthly = new Chart(document.getElementById('chart-cd-monthly'), {
-    type: 'bar',
-    data: { labels: months, datasets: [
-      { label: 'Crédito', data: cdCreditM, backgroundColor: 'rgba(107,33,168,0.7)', borderRadius: 4 },
-      { label: 'Débito/Pix', data: cdDebitM, backgroundColor: 'rgba(3,105,161,0.7)', borderRadius: 4 }
+    type:'bar', data:{ labels:months, datasets:[
+      { label:'Crédito', data:cdCreditM, backgroundColor:'rgba(167,139,250,0.6)', borderRadius:4 },
+      { label:'Débito/Pix', data:cdDebitM, backgroundColor:'rgba(56,189,248,0.6)', borderRadius:4 }
     ]},
-    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { font: { family: 'DM Sans', size: 11 } } } }, scales: { x: { grid: { display: false } }, y: { grid: { color: '#f5c0d022' }, ticks: { callback: v => 'R$'+(v/1000).toFixed(0)+'k' } } } }
+    options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ font:{ family:'DM Sans', size:11 }, color:'#777' } } }, scales:{ x:{ grid:{ display:false }, ticks:{ color:'#666' } }, y:{ grid:{ color:'#2a2a2a' }, ticks:{ color:'#666', callback: v=>'R$'+(v/1000).toFixed(0)+'k' } } } }
   });
-
   chartCdPie = destroyChart(chartCdPie);
   chartCdPie = new Chart(document.getElementById('chart-cd-pie'), {
-    type: 'doughnut',
-    data: { labels: ['Crédito', 'Débito / Pix'], datasets: [{ data: [creditTotal, debitTotal], backgroundColor: ['rgba(107,33,168,0.8)','rgba(3,105,161,0.8)'], borderWidth: 2, borderColor: '#fff' }] },
-    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { font: { family: 'DM Sans', size: 12 } } } } }
+    type:'doughnut',
+    data:{ labels:['Crédito','Débito / Pix'], datasets:[{ data:[creditTotal,debitTotal], backgroundColor:['rgba(167,139,250,0.8)','rgba(56,189,248,0.8)'], borderWidth:2, borderColor:'#161616' }] },
+    options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ font:{ family:'DM Sans', size:12 }, color:'#777' } } } }
   });
-
-  // credit detail table
   const cdBody = document.getElementById('cd-table-body');
   const creditScope = mf==='all' ? entries.filter(e=>e.payment==='credito'&&e.tipo==='saida') : entries.filter(e=>e.payment==='credito'&&e.tipo==='saida'&&e.month===mf);
   if (!creditScope.length) { cdBody.innerHTML = '<div class="empty-state">Nenhum gasto no crédito no período.</div>'; return; }
@@ -956,67 +857,42 @@ function updateCreditTab() {
   </div>`).join('');
 }
 
-// ═══════════════════════════════════════════════
-// ORÇAMENTO TAB
-// ═══════════════════════════════════════════════
 function updateOrcamentoTab() {
   const expenses = entries.filter(e=>e.tipo==='saida');
-  const monthlyTotals = months.map(m => expenses.filter(e=>e.month===m).reduce((s,e)=>s+e.val,0)).filter(v=>v>0);
+  const monthlyTotals = months.map(m=>expenses.filter(e=>e.month===m).reduce((s,e)=>s+e.val,0)).filter(v=>v>0);
   const avgMonthly = monthlyTotals.length ? monthlyTotals.reduce((s,v)=>s+v,0)/monthlyTotals.length : 0;
   document.getElementById('orc-media').textContent = fmtBRL(avgMonthly);
-
-  const monthMax = months.map(m=>({ m, v: expenses.filter(e=>e.month===m).reduce((s,e)=>s+e.val,0) })).sort((a,b)=>b.v-a.v)[0];
+  const monthMax = months.map(m=>({m,v:expenses.filter(e=>e.month===m).reduce((s,e)=>s+e.val,0)})).sort((a,b)=>b.v-a.v)[0];
   document.getElementById('orc-max').textContent = monthMax.m;
   document.getElementById('orc-max-val').textContent = fmtBRL(monthMax.v);
-
   const cats = getCategories().filter(c=>c!=='Renda');
-  const catTotals = cats.map(c=>({ c, v: expenses.filter(e=>e.categoria===c).reduce((s,e)=>s+e.val,0) })).sort((a,b)=>b.v-a.v);
-  if (catTotals.length) {
-    document.getElementById('orc-top-cat').textContent = catTotals[0].c;
-    document.getElementById('orc-top-cat-val').textContent = fmtBRL(catTotals[0].v) + ' no ano';
-  }
-
-  // Budget grid
-  const orcGrid = document.getElementById('orc-grid');
+  const catTotals = cats.map(c=>({c,v:expenses.filter(e=>e.categoria===c).reduce((s,e)=>s+e.val,0)})).sort((a,b)=>b.v-a.v);
+  if (catTotals.length) { document.getElementById('orc-top-cat').textContent = catTotals[0].c; document.getElementById('orc-top-cat-val').textContent = fmtBRL(catTotals[0].v)+' no ano'; }
   const income = entries.filter(e=>e.tipo==='entrada').reduce((s,e)=>s+e.val,0);
-  orcGrid.innerHTML = catTotals.map(({c,v}) => {
-    const avgCat = v / (monthlyTotals.length || 1);
-    const pct = income > 0 ? Math.round((v/income)*100) : 0;
-    const barPct = Math.min(pct * 3, 100);
-    const barColor = pct > 25 ? 'var(--danger)' : pct > 15 ? '#ca8a04' : catColor(c);
-    const cls = pct > 25 ? 'over-budget' : pct > 15 ? 'near-budget' : '';
+  document.getElementById('orc-grid').innerHTML = catTotals.map(({c,v})=>{
+    const avgCat = v/(monthlyTotals.length||1);
+    const pct = income>0?Math.round((v/income)*100):0;
+    const barPct = Math.min(pct*3,100);
+    const barColor = pct>25?'var(--danger)':pct>15?'var(--warning)':catColor(c);
+    const cls = pct>25?'over-budget':pct>15?'near-budget':'';
     return `<div class="budget-item ${cls}">
-      <div class="budget-item-header">
-        <div>
-          <div class="budget-item-name">${c}</div>
-          <div class="budget-item-cat">${fmtBRL(avgCat)}/mês em média</div>
-        </div>
-        <div class="budget-pct">${pct}% da renda</div>
-      </div>
+      <div class="budget-item-header"><div><div class="budget-item-name">${c}</div><div class="budget-item-cat">${fmtBRL(avgCat)}/mês em média</div></div><div class="budget-pct">${pct}% da renda</div></div>
       <div class="budget-bar-bg"><div class="budget-bar-fill" style="width:${barPct}%;background:${barColor}"></div></div>
       <div class="budget-amounts"><span>Total: ${fmtBRL(v)}</span><span>${pct>25?'⚠️ Atenção':pct>15?'💡 Cuidado':'✓ OK'}</span></div>
     </div>`;
   }).join('');
-
-  // Monthly comparison chart
-  const monthlyData = months.map(m => expenses.filter(e=>e.month===m).reduce((s,e)=>s+e.val,0));
+  const monthlyData = months.map(m=>expenses.filter(e=>e.month===m).reduce((s,e)=>s+e.val,0));
   chartOrcMonthly = destroyChart(chartOrcMonthly);
   chartOrcMonthly = new Chart(document.getElementById('chart-orc-monthly'), {
-    type: 'bar',
-    data: {
-      labels: months,
-      datasets: [
-        { label: 'Despesas', data: monthlyData, backgroundColor: monthlyData.map(v=>v>avgMonthly*1.2?'rgba(176,48,96,0.8)':'rgba(212,84,122,0.6)'), borderRadius: 4 },
-        { label: 'Média', data: Array(12).fill(avgMonthly), type: 'line', borderColor: '#ca8a04', borderDash: [6,3], pointRadius: 0, borderWidth: 2 }
-      ]
-    },
-    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { font: { family: 'DM Sans', size: 11 } } } }, scales: { x: { grid: { display: false } }, y: { grid: { color: '#f5c0d022' }, ticks: { callback: v => 'R$'+(v/1000).toFixed(0)+'k' } } } }
+    type:'bar',
+    data:{ labels:months, datasets:[
+      { label:'Despesas', data:monthlyData, backgroundColor:monthlyData.map(v=>v>avgMonthly*1.2?'rgba(248,113,113,0.7)':'rgba(170,170,170,0.5)'), borderRadius:4 },
+      { label:'Média', data:Array(12).fill(avgMonthly), type:'line', borderColor:'#facc15', borderDash:[6,3], pointRadius:0, borderWidth:2 }
+    ]},
+    options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ font:{ family:'DM Sans', size:11 }, color:'#777' } } }, scales:{ x:{ grid:{ display:false }, ticks:{ color:'#666' } }, y:{ grid:{ color:'#2a2a2a' }, ticks:{ color:'#666', callback: v=>'R$'+(v/1000).toFixed(0)+'k' } } } }
   });
 }
 
-// ═══════════════════════════════════════════════
-// ADD ENTRY WITH AI
-// ═══════════════════════════════════════════════
 async function classifyWithAI(desc, val, userType, userFix, userCat, userPay) {
   const prompt = `Classifique este lançamento financeiro pessoal.
 Descrição: "${desc}", Valor: R$ ${val}
@@ -1024,11 +900,9 @@ Tipo informado: ${userType||'não informado'}, Fixo/Variável: ${userFix||'não 
 Categoria: ${userCat||'não informada'}, Pagamento: ${userPay||'não informado'}
 Responda APENAS JSON sem texto extra:
 {"tipo":"entrada" ou "saida","fixo":"fixo" ou "variavel","categoria":"Moradia/Alimentação/Transporte/Saúde/Lazer/Renda/Fixos Digitais/Financeiro/Projetos/Casa/outro","payment":"credito" ou "debito" ou "pix","motivo":"1 frase curta em português"}`;
-
   const resp = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 200, messages: [{ role: 'user', content: prompt }] })
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ model:'claude-sonnet-4-20250514', max_tokens:200, messages:[{ role:'user', content:prompt }] })
   });
   const data = await resp.json();
   const text = data.content.map(b=>b.text||'').join('').replace(/```json|```/g,'').trim();
@@ -1044,96 +918,49 @@ async function addEntry() {
   const userPay = document.getElementById('inp-payment').value;
   const userCat = document.getElementById('inp-cat').value.trim();
   if (!desc || !val) { document.getElementById('ai-status').textContent = 'Preencha ao menos a descrição e o valor.'; return; }
-
   const statusEl = document.getElementById('ai-status');
   statusEl.innerHTML = '<span class="spinner"></span> IA classificando...';
-
   let tipo, fixo, categoria, payment, motivo;
   try {
     const r = await classifyWithAI(desc, val, userType, userFix, userCat, userPay);
-    tipo = userType || r.tipo;
-    fixo = userFix || r.fixo;
-    categoria = userCat || r.categoria;
-    payment = userPay || r.payment || 'debito';
-    motivo = r.motivo;
+    tipo=userType||r.tipo; fixo=userFix||r.fixo; categoria=userCat||r.categoria; payment=userPay||r.payment||'debito'; motivo=r.motivo;
     statusEl.textContent = '✓ ' + motivo;
   } catch(e) {
-    tipo = userType || 'saida';
-    fixo = userFix || 'variavel';
-    categoria = userCat || 'Geral';
-    payment = userPay || 'debito';
+    tipo=userType||'saida'; fixo=userFix||'variavel'; categoria=userCat||'Geral'; payment=userPay||'debito';
     statusEl.textContent = 'Classificado manualmente.';
   }
-
-  entries.push({ id: nextId++, desc, categoria, tipo, fixo, payment, val, month, aiClassified: !userType || !userFix });
-  renderTable();
-  updateVisaoGeral();
-  ['inp-desc','inp-val','inp-cat'].forEach(id => document.getElementById(id).value = '');
-  document.getElementById('inp-type').value = '';
-  document.getElementById('inp-fix').value = '';
-  document.getElementById('inp-payment').value = '';
-  setTimeout(() => { statusEl.textContent = ''; }, 5000);
+  entries.push({ id:nextId++, desc, categoria, tipo, fixo, payment, val, month, aiClassified:!userType||!userFix });
+  renderTable(); updateVisaoGeral();
+  ['inp-desc','inp-val','inp-cat'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('inp-type').value='';
+  document.getElementById('inp-fix').value='';
+  document.getElementById('inp-payment').value='';
+  setTimeout(()=>{ statusEl.textContent=''; }, 5000);
 }
 
-// ═══════════════════════════════════════════════
-// EXPORTAR PARA EXCEL
-// ═══════════════════════════════════════════════
 function exportarExcel() {
   const mf = document.getElementById('filter-month').value;
   const cf = document.getElementById('filter-cat').value;
-
-  // filtra os dados visíveis no momento
   const lista = entries.filter(e => {
-    const typeOk = typeFilter === 'all' || e.tipo === typeFilter;
-    const fixOk  = fixFilter  === 'all' || e.fixo === fixFilter;
-    const payOk  = payFilter  === 'all' || e.payment === payFilter || (payFilter === 'debito' && (e.payment === 'debito' || e.payment === 'pix'));
-    const monthOk = mf === 'all' || e.month === mf;
-    const catOk   = cf === 'all' || e.categoria === cf;
-    return typeOk && fixOk && payOk && monthOk && catOk;
+    const typeOk = typeFilter==='all'||e.tipo===typeFilter;
+    const fixOk  = fixFilter==='all'||e.fixo===fixFilter;
+    const payOk  = payFilter==='all'||e.payment===payFilter||(payFilter==='debito'&&(e.payment==='debito'||e.payment==='pix'));
+    const monthOk = mf==='all'||e.month===mf;
+    const catOk   = cf==='all'||e.categoria===cf;
+    return typeOk&&fixOk&&payOk&&monthOk&&catOk;
   });
-
   if (!lista.length) { alert('Nenhum lançamento para exportar com os filtros atuais.'); return; }
-
-  // monta as linhas
-  const linhas = lista.map(e => ({
-    'Descrição':    e.desc,
-    'Mês':          e.month,
-    'Tipo':         e.tipo === 'entrada' ? 'Entrada' : 'Saída',
-    'Fixo/Variável': e.fixo === 'fixo' ? 'Fixo' : 'Variável',
-    'Pagamento':    e.payment === 'credito' ? 'Crédito' : e.payment === 'debito' ? 'Débito' : 'Pix',
-    'Categoria':    e.categoria,
-    'Valor (R$)':   e.tipo === 'entrada' ? e.val : -e.val
-  }));
-
-  // aba de resumo por mês
-  const resumo = ['Jan','Fev','Mar','Abr','Maio','Jun','Jul','Ago','Set','Out','Nov','Dez'].map(m => {
-    const scope = entries.filter(e => e.month === m);
-    const inc = scope.filter(e=>e.tipo==='entrada').reduce((s,e)=>s+e.val,0);
-    const exp = scope.filter(e=>e.tipo==='saida').reduce((s,e)=>s+e.val,0);
-    return { 'Mês': m, 'Renda (R$)': inc, 'Despesas (R$)': exp, 'Saldo (R$)': inc - exp };
-  }).filter(r => r['Renda (R$)'] > 0 || r['Despesas (R$)'] > 0);
-
-  // cria workbook com 2 abas
+  const linhas = lista.map(e=>({'Descrição':e.desc,'Mês':e.month,'Tipo':e.tipo==='entrada'?'Entrada':'Saída','Fixo/Variável':e.fixo==='fixo'?'Fixo':'Variável','Pagamento':e.payment==='credito'?'Crédito':e.payment==='debito'?'Débito':'Pix','Categoria':e.categoria,'Valor (R$)':e.tipo==='entrada'?e.val:-e.val}));
+  const resumo = months.map(m=>{ const s=entries.filter(e=>e.month===m); const inc=s.filter(e=>e.tipo==='entrada').reduce((a,e)=>a+e.val,0); const exp=s.filter(e=>e.tipo==='saida').reduce((a,e)=>a+e.val,0); return {'Mês':m,'Renda (R$)':inc,'Despesas (R$)':exp,'Saldo (R$)':inc-exp}; }).filter(r=>r['Renda (R$)']>0||r['Despesas (R$)']>0);
   const wb = XLSX.utils.book_new();
-
-  const wsLancamentos = XLSX.utils.json_to_sheet(linhas);
-  wsLancamentos['!cols'] = [
-    { wch: 30 }, { wch: 8 }, { wch: 10 }, { wch: 14 }, { wch: 12 }, { wch: 18 }, { wch: 14 }
-  ];
-  XLSX.utils.book_append_sheet(wb, wsLancamentos, 'Lançamentos');
-
-  const wsResumo = XLSX.utils.json_to_sheet(resumo);
-  wsResumo['!cols'] = [{ wch: 8 }, { wch: 14 }, { wch: 16 }, { wch: 12 }];
-  XLSX.utils.book_append_sheet(wb, wsResumo, 'Resumo Mensal');
-
-  // nome do arquivo com filtro aplicado
-  const sufixo = mf !== 'all' ? `_${mf}` : '_anual';
-  XLSX.writeFile(wb, `financas_henrique${sufixo}_2026.xlsx`);
+  const wsL = XLSX.utils.json_to_sheet(linhas); wsL['!cols']=[{wch:30},{wch:8},{wch:10},{wch:14},{wch:12},{wch:18},{wch:14}];
+  XLSX.utils.book_append_sheet(wb,wsL,'Lançamentos');
+  const wsR = XLSX.utils.json_to_sheet(resumo); wsR['!cols']=[{wch:8},{wch:14},{wch:16},{wch:12}];
+  XLSX.utils.book_append_sheet(wb,wsR,'Resumo Mensal');
+  const sufixo = mf!=='all'?`_${mf}`:'_anual';
+  XLSX.writeFile(wb,`financas_henrique${sufixo}_2026.xlsx`);
 }
 
-// ═══════════════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════════════
 initData();
 renderTable();
 updateVisaoGeral();
